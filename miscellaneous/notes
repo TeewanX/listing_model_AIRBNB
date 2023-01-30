@@ -2,3 +2,20 @@ The initial plan is to set up a repository that can serve as version control and
 a safe place to store the code. 
   Next step is to start with an exploratory analysis of the input data and also
 do online research into the different modelling options.
+
+There are many columns, 96 to be exact, but not all of them are equally clean.
+I will start with a prescription of a column that ensures they are of the right
+ class and convert them to a useful format.
+ Having done so, I have investigated the usefulness of the different columns. 
+ Some columns were excluded because they had too little differerent information 
+ or had too many NAs. 
+After the data quality exclusion, the next step was some enhancement. This 
+mainly consisted of making a few more fields or changing them into a more useful format.
+ I have enhanced the calendar update since I had no legitimite reason to exclude it,
+ created the field review_period to also look at listings that have been around 
+ for a long time and lastly have considered common luxury amenities as a logical.
+ 
+Now I have a long list of variables I would like to check for predictive power.
+ I have found that there are two methods I can consider. A machine learning 
+ method XGBoost and a more simple supervised machine learning method such as
+ linear regression.

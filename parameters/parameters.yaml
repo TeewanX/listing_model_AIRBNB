@@ -1,6 +1,13 @@
 author: "Twan van der Meijden"
 
+configuration:
+  location: 'parameters/configuration.yaml'
+
 packages:
   - "dplyr"
+  - "data.table"
+  - "datetime"
   
+data:
+  location: "input/listings_summary.csv"
 ...

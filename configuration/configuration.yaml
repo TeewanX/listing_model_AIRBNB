@@ -1,0 +1,25 @@
+author: "Twan van der Meijden"
+
+parameters:
+  location: 'configuration/parameters.yaml'
+
+packages:
+  - "dplyr"
+  - "data.table"
+  - "datetime"
+  - "caret"
+  - "openxlsx"
+  - "fastDummies"
+  - "ltm"
+  - "psych"
+  - "rcompanion"
+  - "geosphere"
+  - "xgboost"
+  - "scales"
+input_data:
+  location: "input/listings_summary.csv"
+output_data:
+  correlations: "output/correlations"
+
+
+...

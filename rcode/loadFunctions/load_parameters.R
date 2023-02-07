@@ -1,8 +1,8 @@
-loadParameters <- function(location) {
+loadConfiguration <- function(location) {
   require(yaml)
-  parameters <- read_yaml(file = location)
+  configuration <- read_yaml(file = location)
   
-  for (pkg in parameters$packages) {
+  for (pkg in configuration$packages) {
     print(pkg)
     if (!require(pkg, character.only = T)) {
       install.packages(pkg, dependencies = T)
@@ -10,14 +10,14 @@ loadParameters <- function(location) {
     library(pkg, character.only = T)
   }
   
-  parameters$configuration <- loadConfiguration(parameters)
-  
-  return(parameters)
-}
-
-loadConfiguration <- function(parameters) {
-  
-  configuration <- read_yaml(parameters$configuration$location)
+  configuration$parameters <- loadParameters(configuration)
   
   return(configuration)
+}
+
+loadParameters <- function(configuration) {
+  
+  parameters <- read_yaml(configuration$parameters$location)
+  
+  return(parameters)
 }

@@ -1,5 +1,13 @@
+model:
+  no_of_variables: 5
+data:
+  price_cutoff: 500
+  training:
+    data_split: 0.8
+    kfolds: 5
 columns:
   characters:
+    - id
     - name
     - summary
     - space
@@ -85,32 +93,40 @@ columns:
     - first_review
     - last_review
 long_list:
-  - host_since
+  - price
+  - log_price
   - host_response_time
   - host_response_rate
   - host_is_superhost
   - host_total_listings_count
-  - host__has_profile_pic
+  - host_has_profile_pic
   - host_identity_verified
-  - street
   - neighbourhood_cleansed
-  - neighboourhood_group_cleansed
-  - latitude
-  - longitude
+  - neighbourhood_group_cleansed
+  - log_distance_to_center
+  - distance_to_center
+  - mentions_transit
   - is_location_exact
   - property_type
+  - property_very_high
+  - property_high
+  - property_medium
+  - property_low
+  - property_very_low
   - room_type
   - accommodates
   - bathrooms
   - bedrooms
   - beds
   - bed_type
+  - no_of_amenities
+  - luxurious
   - has_tv
   - has_internet
   - has_wifi
   - has_parking
-  - price
   - security_deposit
+  - high_deposit
   - cleaning_fee
   - guests_included
   - extra_people
@@ -122,8 +138,6 @@ long_list:
   - availability_90
   - availability_365
   - number_of_reviews
-  - first_review
-  - last_review
   - review_period
   - review_scores_rating
   - review_scores_accuracy
@@ -136,4 +150,113 @@ long_list:
   - cancellation_policy
   - calculated_host_listings_count
   - reviews_per_month
+short_list:
+  correlation_lower_threshold: 0.1
+  correlation_upper_threshold: 0.5
+regression_list:
+  - price
+  - log_price
+  - accommodates
+  - bathrooms
+  - beds
+  - cleaning_fee
+  - high_deposit
+  - availability_90
+  - review_period
+  - review_scores_cleanliness
+  - no_of_amenities
+  - has_tv
+  - has_parking
+  - luxurious
+  - neighbourhood_cleansed_Alexanderplatz
+  - neighbourhood_cleansed_Brunnenstr_Süd
+  - neighbourhood_group_cleansed_Neukölln
+  - log_distance_to_center
+  - property_very_high
+  - property_type_Loft
+  - room_type_Entire_home_apt
+  - cancellation_policy_flexible
+xgb_list:
+  - price
+  - log_price
+  - log_distance_to_center
+  - distance_to_center
+  - accommodates
+  - bathrooms
+  - bedrooms
+  - beds
+  - no_of_amenities
+  - security_deposit
+  - cleaning_fee
+  - guests_included
+  - extra_people
+  - calendar_updated_cleansed
+  - availability_30
+  - availability_60
+  - availability_90
+  - availability_365
+  - review_period
+  - review_scores_cleanliness
+  - property_very_high
+  - property_high
+  - property_low
+  - has_tv
+  - has_parking
+  - high_deposit
+  - host_response_time_N_A
+  - neighbourhood_cleansed_Alexanderplatz
+  - neighbourhood_cleansed_Brunnenstr_Süd
+  - neighbourhood_group_cleansed_Neukölln
+  - property_type_Apartment
+  - property_type_Loft
+  - room_type_Entire_home_apt
+  - room_type_Private_room
+  - room_type_Shared_room
+  - cancellation_policy_flexible
+  - cancellation_policy_strict_14_with_grace_period
+extra_variables:
+  high_deposit:
+    amount: 150
+  distance_to_center:
+    - 52.52000 #latitude
+    - 13.40495 #longitude
+  propertyType:
+    very_high: 
+      - Houseboat
+      - Boat
+      - Boutique hotel
+      - Hotel
+      - Aparthotel
+      - Serviced apartment
+    high:
+      - Loft
+      - Villa
+      - Barn
+      - Castle
+      - Cottage
+      - Pension (South Korea)
+      - Other
+      - Island
+    medium:
+      - Guesthouse
+      - Bungalow
+      - Chalet
+      - House
+      - Cabin
+      - Condominium
+      - Townhouse
+      - Train
+    low:
+      - Apartment
+    very_low:
+      - Tiny house
+      - Guest suite
+      - Bed and breakfast
+      - Camper/RV
+      - In-law
+      - Hostel
+      - Casa particular (Cuba)
+      - Tipi
+      - Cave
+      - Resort
 ...

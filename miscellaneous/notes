@@ -14,8 +14,17 @@ mainly consisted of making a few more fields or changing them into a more useful
  I have enhanced the calendar update since I had no legitimite reason to exclude it,
  created the field review_period to also look at listings that have been around 
  for a long time and lastly have considered common luxury amenities as a logical.
+ I will follow this up with a correlation matrix to avoid multicollinearity.
  
 Now I have a long list of variables I would like to check for predictive power.
  I have found that there are two methods I can consider. A machine learning 
  method XGBoost and a more simple supervised machine learning method such as
  linear regression.
+ 
+Thinking of this assessment as a customer-driven assignment, I have come up with
+ some special cases/requests: try a 'we-do-not-care-about-anything-but-performance' 
+ model. Produce an advice for which model to use for which customer.
+ Think of reasons why the model performs the way it does (personal info missing,
+ temporal info missing). Suggest future investigations (retrieve info from 
+ listers, perform the scrape several times in a year or try to retrieve monthly
+ listing price fluctuations, try more variable variations)

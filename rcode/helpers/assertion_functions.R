@@ -1,15 +1,15 @@
-dropColumns <- function(data, parameters) {
+dropColumns <- function(data, configuration) {
   #Dropping all the columns which were deemed unnecessary
-  keep_columns    <- unlist(parameters$configuration$columns, use.names = F)
+  keep_columns    <- unlist(configuration$parameters$columns, use.names = F)
   columns_to_keep <- intersect(colnames(data), keep_columns)
   new_data        <- data[, ..columns_to_keep]
   return(new_data)
 }
 
 
-assertColumnClasses <- function(data, parameters) {
-  for (class in names(parameters$configuration$columns)) {
-    columns_to_transform <- parameters$configuration$columns[[class]]
+assertColumnClasses <- function(data, configuration) {
+  for (class in names(configuration$parameters$columns)) {
+    columns_to_transform <- configuration$parameters$columns[[class]]
     if (class == 'dates') {
       data[, columns_to_transform] <- lapply(data[, ..columns_to_transform], function(x) ifelse(x == '', NA, x))
       data[, columns_to_transform] <- lapply(data[, ..columns_to_transform], as.Date)

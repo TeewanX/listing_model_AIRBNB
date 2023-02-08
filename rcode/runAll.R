@@ -20,7 +20,7 @@ runAll <- function() {
   
   #removing fields with too low correlation
   data <- findSignificantFields(data, configuration)
-  datmessage('Correlations calculated and fields dropped - Round 3')
+  message('Correlations calculated and fields dropped - Round 3')
   
   #exporting a correlation matrix for all remaining fields
   determineCorrelations(data, configuration)
@@ -60,4 +60,6 @@ runAll <- function() {
   
   #showing some general plots and stats on the models performance
   performModelAssessment(suggested_xgb_model, configuration)
+  
+  compareModels(suggested_xgb_model, suggested_mlr_model, configuration)
 }

@@ -1,6 +1,6 @@
 runLinearRegression <- function(data_list, configuration) {
   #loading back in the unstandardized parameters to evaluate the performance on the actual price
-  price_stats <- readRDS('output/price_stats.RDS')
+  price_stats <- readRDS('output/normalization/log_price.RDS')
   model_list <- list()
   
   #looping through the K-folds to produce K models with different train/test sets

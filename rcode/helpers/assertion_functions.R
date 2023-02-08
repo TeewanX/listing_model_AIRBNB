@@ -8,6 +8,8 @@ dropColumns <- function(data, configuration) {
 
 
 assertColumnClasses <- function(data, configuration) {
+  #for all the classes it ensures they are of the correct type. It also removes
+  #unnecessary symbols to cast them in to the correct data type.
   for (class in names(configuration$parameters$columns)) {
     columns_to_transform <- configuration$parameters$columns[[class]]
     if (class == 'dates') {

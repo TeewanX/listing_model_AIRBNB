@@ -183,7 +183,7 @@ performModelAssessment <- function(model_details, configuration) {
 
 
 
-compareModels <- function(suggested_xlr_model, suggested_mlr_model, configuration) {
+compareModels <- function(suggested_xgb_model, suggested_mlr_model, configuration) {
   price_stats <- readRDS('output/normalization/log_price.RDS')
   testing_data_xgb <- suggested_xgb_model$test_data
   testing_data_xgb$predictions_xgb <- testing_data$predictions

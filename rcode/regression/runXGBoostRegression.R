@@ -1,6 +1,6 @@
 runXGBoostRegression <- function(data_list, configuration, params = list(max_depth = 6, eta = 0.05, subsample = 0.8, lambda = 0.5, alpha = 0, gamma = 0.75, min_child_weight = 5), hypertune = F) {
   #loading back in the unstandardized parameters to evaluate the performance on the actual price
-  price_stats <- readRDS('output/price_stats.RDS')
+  price_stats <- readRDS('output/normalization/log_price.RDS')
   model_list <- list()
   
   #fixing the randomness to ensure reproducibility

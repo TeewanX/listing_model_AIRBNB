@@ -145,11 +145,12 @@ enhanceAmenities <- function(data, configuration) {
 normalizeNumericals <- function(data, configuration) {
   
   #normalizing all the numerical variables such that they are centered around 0 with SD 1
-  save_stats <- c(mean(data$log_price), sd(data$log_price))
-  saveRDS(save_stats, file = 'output/price_stats.RDS')
+
   for (col in colnames(data)) {
     if (col == 'price') {next}
     else if (is.numeric(data[[col]])) {
+      save_stats <- c(mean(data[[col]]), sd(data[[col]]))
+      saveRDS(save_stats, file = paste0('output/normalization/', col, '.RDS'))
       data[[col]] <- (data[[col]] - mean(data[[col]], na.rm = T)) / sd(data[[col]], na.rm = T)
     }
   }
@@ -169,7 +170,7 @@ createDummyFields <- function(data, configuration) {
   #Create dummy variables for the categorical variables
   data <- dummy_cols(data, remove_first_dummy = FALSE, remove_selected_columns = TRUE)
   
-  #data cleaning on pesky neighbourhoods with weird symbols etc.
+  #data cleaning on pesky neighbourhoods with unusual symbols
   colnames(data) <- gsub(pattern = "[`/.() -]", replacement = "_", colnames(data))
   colnames(data) <- gsub(pattern = "__", replacement = "_", colnames(data))
   colnames(data) <- gsub(pattern = "__", replacement = "_", colnames(data))

@@ -28,3 +28,5 @@ Thinking of this assessment as a customer-driven assignment, I have come up with
  temporal info missing). Suggest future investigations (retrieve info from 
  listers, perform the scrape several times in a year or try to retrieve monthly
  listing price fluctuations, try more variable variations)
+ 
+ Allowing all variables (not just those with good correlation) does not significantly improve the model (only by 5%)

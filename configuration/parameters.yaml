@@ -7,8 +7,6 @@ data:
     kfolds: 5
 columns:
   characters:
-    - id
-    - name
     - summary
     - space
     - description
@@ -19,7 +17,6 @@ columns:
     - access
     - interaction
     - house_rules
-    - host_id
     - host_location
     - host_about
     - host_verifications
@@ -88,7 +85,6 @@ columns:
     - review_scores_value
     - calculated_host_listings_count
   dates:
-    - last_scraped
     - host_since
     - first_review
     - last_review

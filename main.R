@@ -8,5 +8,5 @@ setwd(ROOT.DIRECTORY)
 source.files <- list.files(path = 'rcode', recursive = T)
 invisible(lapply(paste0('rcode/', source.files), source))
 
-#Start calibration
+#Starting calibration
 runAll()

@@ -1,10 +1,12 @@
 performModelAssessment <- function(model_details, configuration) {
+  #tracking the model type for slightly different approaches and tagging
   if(class(model_details$model) == 'xgb.Booster') {
     model_type <- 'xgb'
   } else {
     model_type <- 'mlr'
   }
   
+  #providing information on the Rsquared and RMSE
   performance_statement <- paste0('The final RSquared on the log of the price was ', 
                                   scales::percent(model_details$adj_rsquared_log, accuracy = 0.1), 
                                   ". If we only consider the actual price, this drops down to ", 
@@ -14,7 +16,11 @@ performModelAssessment <- function(model_details, configuration) {
                                   "EUR. However, the RMSE is ",
                                   round(model_details$rmse, digits = 1),"EUR.")
   message(performance_statement)
-  #Plots
+  
+  
+  ###Plots###
+  
+  #creating additional variables used for analysis
   plot_data <- model_details$test_data %>% arrange(price)
   plot_data$residuals <- plot_data$price - plot_data$predictions
   plot_data$residuals_log <- plot_data$log_price - plot_data$log_predictions
@@ -35,6 +41,7 @@ performModelAssessment <- function(model_details, configuration) {
   file_name <- paste0('output/',model_type,"/log_residuals.png")
   ggsave(filename = file_name, plot = p, height = 10, width = 15, bg = 'transparent')
   
+  
   p <- ggplot(plot_data) +
     geom_line(aes(x = smooth_price, y = smooth_price, col = 'Actual price')) +
     geom_point(aes(x = price, y = predictions, col = 'Predicted price', shape = 'Predicted price'), size = 0.5, show.legend = F) +
@@ -49,6 +56,8 @@ performModelAssessment <- function(model_details, configuration) {
   file_name <- paste0('output/',model_type,"/actual_vs_prediction.png")
   ggsave(filename = file_name, plot = p, height = 10, width = 15, bg = 'transparent')
   
+  
+  #calculating variable importance
   if (model_type == 'xgb') {
     importance <- xgb.importance(feature_names = model_details$model$feature_names, model = model_details$model)[1:10,1:2] %>%
       rename('metric' = 'Gain')
@@ -59,6 +68,7 @@ performModelAssessment <- function(model_details, configuration) {
       summarise(Feature, metric = Overall/max(2*Overall))
   }
   
+  #plotting variable importance
   plot_data <- importance
   p <- ggplot(plot_data) +
     theme_minimal() +

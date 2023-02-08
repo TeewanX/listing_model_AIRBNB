@@ -1,7 +1,7 @@
 plotHistogram <- function(data, variable_name, configuration) {
   
   #creating histogram for the data set
-  hist_data <- suppressWarnings(hist(data, plot = F, bins = 25))
+  hist_data <- suppressWarnings(hist(data, plot = F, breaks = 25))
   hist_data <- data.frame(hist_data[c('mids', 'counts')])
   
   #plotting the histogram
@@ -15,4 +15,13 @@ plotHistogram <- function(data, variable_name, configuration) {
   plot(p)
   file_name <- paste0('output/data_analysis/histogram_', variable_name,".png")
   ggsave(filename = file_name, plot = p, height = 10, width = 15, bg = 'transparent')
+}
+
+getNAStats <- function(data, configuration) {
+  NAs_per_column <- sapply(lapply(data, is.na), mean)
+  return(NAs_per_columns)
+}
+
+getUniqueValuesStats <- function(data, configuration) {
+  uniques_per_column <- sapply(lapply(data, unique), length)
 }

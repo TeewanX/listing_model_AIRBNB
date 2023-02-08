@@ -20,7 +20,7 @@ runAll <- function() {
   
   #removing fields with too low correlation
   data <- findSignificantFields(data, configuration)
-  message('Correlations calculated and fields dropped - Round 3')
+  datmessage('Correlations calculated and fields dropped - Round 3')
   
   #exporting a correlation matrix for all remaining fields
   determineCorrelations(data, configuration)
